@@ -19,26 +19,26 @@ const diffuseRate = 0.05;
 const width = canvas.width;
 const height = canvas.height;
 
-let stream = canvas.captureStream(60); // 60 fps for timelapse
-let mediaRecorder = new MediaRecorder(stream);
-mediaRecorder.ondataavailable = handleDataAvailable;
-mediaRecorder.onstop = exportVideo;
+// let stream = canvas.captureStream(60); // 60 fps for timelapse
+// let mediaRecorder = new MediaRecorder(stream);
+// mediaRecorder.ondataavailable = handleDataAvailable;
+// mediaRecorder.onstop = exportVideo;
 
-let chunks = [];
+// let chunks = [];
 
-let currTime = new Date().getTime() / 1000 / 60;
+// let currTime = new Date().getTime() / 1000 / 60;
 
-function handleDataAvailable(event) {
-    chunks.push(event.data);
-}
+// function handleDataAvailable(event) {
+//     chunks.push(event.data);
+// }
 
-function exportVideo() {
-    let blob = new Blob(chunks, { 'type' : 'video/mp4' }); // other types are available such as 'video/webm' for instance, see the doc for more info
-    chunks = []; // reset chunks
-    var videoURL = URL.createObjectURL(blob);
-    vid.src = videoURL;
-    window.open(videoURL, '_blank').focus();
-}
+// function exportVideo() {
+//     let blob = new Blob(chunks, { 'type' : 'video/mp4' }); // other types are available such as 'video/webm' for instance, see the doc for more info
+//     chunks = []; // reset chunks
+//     var videoURL = URL.createObjectURL(blob);
+//     vid.src = videoURL;
+//     window.open(videoURL, '_blank').focus();
+// }
 
 class Particle {
     constructor(x, y) {
@@ -166,7 +166,7 @@ function start() {
     //     particles.push(new Particle(x, y));
     // }
 
-    if (mediaRecorder.state !== 'recording') mediaRecorder.start(100);
+    // if (mediaRecorder.state !== 'recording') mediaRecorder.start(100);
 
     requestAnimationFrame(loop);
 }
@@ -183,9 +183,9 @@ function loop() {
         p.update();
     }
 
-    let time = new Date().getTime() / 1000 / 60;
+    // let time = new Date().getTime() / 1000 / 60;
 
-    if (time - currTime > 30) mediaRecorder.stop();
+    // if (time - currTime > 30) mediaRecorder.stop();
 
     requestAnimationFrame(loop);
 }
